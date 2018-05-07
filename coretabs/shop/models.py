@@ -7,7 +7,7 @@ class Category(models.Model):
 	description = models.TextField(max_length=100, blank=True)
 	slug = models.SlugField(unique=True, blank=True)
 
-	class Mota:
+	class Meta:
 		ordering = ('name',)
 
 class Product(models.Model):
@@ -19,7 +19,7 @@ class Product(models.Model):
 	slug = models.SlugField(unique=True, blank=True)
 	category = models.ForeignKey(Category, related_name='products', on_delete=models.CASCADE)
 
-	class Mota:
+	class Meta:
 		ordering = ('name',)
 
 
