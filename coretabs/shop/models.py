@@ -4,7 +4,7 @@ from django.db import models
 class Category(models.Model):
 	name = models.CharField(max_length=100)
 	created_at = models.DateTimeField(auto_now_add=True)
-	description = models.TextField(max_length=100, blank=True)
+	description = models.TextField(blank=True, max_length=256)
 	slug = models.SlugField(unique=True, blank=True)
 
 	class Meta:
