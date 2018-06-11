@@ -1,5 +1,5 @@
 from django.shortcuts import HttpResponse 
-from .models import ALBUMS
+#from .models import ALBUMS
 
 # Create your views here.
 
