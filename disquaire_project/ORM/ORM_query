@@ -1,0 +1,80 @@
+
+- 5 artistes minimum aux noms différents.
+- 5 albums minimum avec des attributs différents. 
+  Chaque album est relié à un ou plusieurs artistes.
+--------------------------------------------------------
+from store.models import Artist, Album
+
+A1 = Artist.objects.create(name="mohamedou")
+A2 = Artist.objects.create(name="cheikh tourad")
+A3 = Artist.objects.create(name="Céline")
+A4 = Artist.objects.create(name="Martinet")
+A5 = Artist.objects.create(name="Sanchez")
+
+
+b1 = Album.objects.create(title="motivation")
+b1.artists.add(A1)
+b1.artists.add(A2)
+b1.artists.add(A3)
+
+
+
+b2 = Album.objects.create(title="Love")
+b2.artists.add(A2)
+b2.artists.add(A3)
+
+b3 = Album.objects.create(title="Romance")
+b3.artists.add(A3)
+b3.artists.add(A4)
+
+
+b4 = Album.objects.create(title="rap")
+b4.artists.add(A4)
+b4.artists.add(A5)
+
+
+b5 = Album.objects.create(title="inchaad")
+b5.artists.add(A5)
+
+-----------------------------------------------------------
+
+
+- modifiez un artiste,
+
+- supprimez un artiste,
+
+- modifiez un album,
+
+- supprimez un album.
+
+------------------------------------------------
+
+A1.name = "new Artist"
+
+A1.delete()
+
+b1.name = "new Album"
+
+b1.delete()
+
+---------------------------------------------------
+
+- Retrouvez un artiste dont le nom est XX (remplacez par le nom d'un de vos artistes). La valeur renvoyée doit être de type "Artist".
+
+- Tous les albums dont l'artiste est XX (remplacez par le nom d'un de vos artistes). La valeur renvoyée doit être de type "QuerySet".
+
+- Retrouvez un album en utilisant son identifiant.
+------------------------------------------------------------
+
+Artist.objects.filter(name="cheikh tourad")
+
+
+Album.objects.filter(artists__name__icontains="Céline")
+
+
+Album.objects.get(pk=6)
+
+
+
+
+

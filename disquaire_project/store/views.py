@@ -1,3 +1,4 @@
+from django.template import loader
 from django.shortcuts import HttpResponse 
 from .models import Album, Artist, Contact, Booking
 #from .models import ALBUMS
@@ -5,11 +6,15 @@ from .models import Album, Artist, Contact, Booking
 # Create your views here.
 
 def index(request):
+	template = loader.get_template('store/index.html')
+	'''
 	albums =  Album.objects.filter(available=True).order_by('-created_at')[:12]
 	formatted_albums = ["<li>{}</li>".format(album.title) for album in albums]
 
-	message = """<ul>{}</ul>""".format("\n".join(formatted_albums))
-	return HttpResponse(message)
+	message = """<ul>{}</ul>""".format("".join(formatted_albums))
+	'''
+
+	return HttpResponse(template.render(request=request))
 
 def listing(request):
 	albums = Album.objects.filter(available=True)
@@ -34,7 +39,7 @@ def search(request):
     	album = Album.objects.all()
     else:
     	albums = Album.objects.filter(title__icontains=query)
-    	
+
     if not albums.exists():
     	albums = Album.objects.filter(artists__name__icontains=query)
 
